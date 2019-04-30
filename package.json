@@ -1,0 +1,24 @@
+{
+  "name": "typescript-alurabank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "start": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenanSucs/TypeScript-AluraBank.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RenanSucs/TypeScript-AluraBank/issues"
+  },
+  "homepage": "https://github.com/RenanSucs/TypeScript-AluraBank#readme",
+  "devDependencies": {
+    "typescript": "^2.3.2"
+  }
+}
