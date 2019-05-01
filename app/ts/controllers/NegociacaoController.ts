@@ -3,6 +3,7 @@ class NegociacaoController {
     private _inputData: HTMLInputElement; //declarando tipo input
     private _inputQuantidade: HTMLInputElement;//Alguns tipos: HTMLInputElement, HTMLTableElement, HTMLAnchorElement
     private _inputValor: HTMLInputElement;
+    private _negociacoes = new Negociacoes;
 
     constructor() {
 
@@ -16,10 +17,18 @@ class NegociacaoController {
         event.preventDefault();
 
         const negociacao = new Negociacao(
-            this._inputData.value, 
-            this._inputQuantidade.value, 
-            this._inputValor.value);
+            new Date(this._inputData.value.replace(/-/g, ',')), 
+            parseInt(this._inputQuantidade.value), 
+            parseFloat(this._inputValor.value));
 
-        console.log(negociacao);
+        this._negociacoes.adiciona(negociacao);
+        this._negociacoes.paraArray().length = 0;
+        this._negociacoes.paraArray().forEach(negociacao => {
+
+            console.log(negociacao.data);
+            console.log(negociacao.quantidade);
+            console.log(negociacao.valor);
+            console.log(negociacao.volume);
+        })
     }
 }
