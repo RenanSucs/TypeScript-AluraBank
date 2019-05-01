@@ -1,11 +1,4 @@
-class NegociacoesView{//template string para popular com negociacoes
-
-    private _elemento: Element;
-
-    constructor(seletor: string){
-
-        this._elemento = document.querySelector(seletor);
-    }
+class NegociacoesView extends View {//template string para popular com negociacoes
 
     update(modelo: Negociacoes): void{
 
