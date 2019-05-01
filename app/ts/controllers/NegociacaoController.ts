@@ -3,13 +3,16 @@ class NegociacaoController {
     private _inputData: HTMLInputElement; //declarando tipo input
     private _inputQuantidade: HTMLInputElement;//Alguns tipos: HTMLInputElement, HTMLTableElement, HTMLAnchorElement
     private _inputValor: HTMLInputElement;
-    private _negociacoes = new Negociacoes;
+    private _negociacoes = new Negociacoes();
+    private _negociacoesView = new NegociacoesView('#negociacoesView');
+    private _mensagensView = new MensagensView('#mensagemView')
 
     constructor() {
 
         this._inputData = <HTMLInputElement>document.querySelector('#data');//passando formato input para o querySelector
         this._inputQuantidade = <HTMLInputElement>document.querySelector('#quantidade');
         this._inputValor = <HTMLInputElement>document.querySelector('#valor');
+        this._negociacoesView.update(this._negociacoes);
     }
 
     adiciona(event: Event) {
@@ -22,13 +25,8 @@ class NegociacaoController {
             parseFloat(this._inputValor.value));
 
         this._negociacoes.adiciona(negociacao);
-        this._negociacoes.paraArray().length = 0;
-        this._negociacoes.paraArray().forEach(negociacao => {
 
-            console.log(negociacao.data);
-            console.log(negociacao.quantidade);
-            console.log(negociacao.valor);
-            console.log(negociacao.volume);
-        })
+        this._negociacoesView.update(this._negociacoes);  
+        this._mensagensView.update('Negociação adicionada com sucesso');
     }
 }
