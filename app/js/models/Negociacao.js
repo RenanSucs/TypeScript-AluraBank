@@ -4,7 +4,6 @@ class Negociacao {
         this._quantidade = _quantidade;
         this._valor = _valor;
     }
-    //declara como privada e define o tipo da variavel: Date, number, string
     get data() {
         return this._data;
     }

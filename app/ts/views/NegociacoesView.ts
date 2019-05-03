@@ -1,9 +1,4 @@
-class NegociacoesView extends View {//template string para popular com negociacoes
-
-    update(modelo: Negociacoes): void{
-
-        this._elemento.innerHTML = this.template(modelo);
-    }
+class NegociacoesView extends View<Negociacoes> {//template string para popular com negociacoes
 
     template(modelo: Negociacoes): string {
 

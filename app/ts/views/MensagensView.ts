@@ -1,11 +1,6 @@
-class MensagensView extends View {
+class MensagensView extends View<string> {
 
-    update(modelo: string){
-
-        this._elemento.innerHTML = this.template(modelo)
-    }
-
-    template(modelo: string){
+    template(modelo: string): string{
 
         return `<p class="alert alert-info">${modelo}</p>`
     }
