@@ -1,34 +1,38 @@
-class NegociacoesView extends View<Negociacoes> {//template string para popular com negociacoes
+namespace Views{
 
-    template(modelo: Negociacoes): string {
+    export class NegociacoesView extends Views.View<Negociacoes> {//template string para popular com negociacoes
 
-        return `
-        <table class="table table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th>DATA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR</th>
-                    <th>VOLUME</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                ${modelo.paraArray().map(negociacao => {
-                return `
+        template(modelo: Negociacoes): string {
+    
+            return `
+            <table class="table table-hover table-bordered">
+                <thead>
                     <tr>
-                        <td>${negociacao.data.getDate()}/${negociacao.data.getMonth() + 1}/${negociacao.data.getFullYear()}</td>
-                        <td>${negociacao.quantidade}</td>
-                        <td>${negociacao.valor}</td>
-                        <td>${negociacao.volume}</td>
+                        <th>DATA</th>
+                        <th>QUANTIDADE</th>
+                        <th>VALOR</th>
+                        <th>VOLUME</th>
                     </tr>
-                    `
-                }).join('')}
-            </tbody>
-
-            <tfoot>
-            </tfoot>
-        </table>                
-        `;
+                </thead>
+    
+                <tbody>
+                    ${modelo.paraArray().map(negociacao => {
+                    return `
+                        <tr>
+                            <td>${negociacao.data.getDate()}/${negociacao.data.getMonth() + 1}/${negociacao.data.getFullYear()}</td>
+                            <td>${negociacao.quantidade}</td>
+                            <td>${negociacao.valor}</td>
+                            <td>${negociacao.volume}</td>
+                        </tr>
+                        `
+                    }).join('')}
+                </tbody>
+    
+                <tfoot>
+                </tfoot>
+            </table>                
+            `;
+        }
     }
 }
+
