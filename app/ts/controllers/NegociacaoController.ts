@@ -1,4 +1,11 @@
-class NegociacaoController {
+import { NegociacoesView } from '../views/NegociacoesView';
+import { MensagensView } from '../views/MensagensView';
+import { Negociacoes } from '../models/Negociacoes';
+import { Negociacao } from '../models/Negociacao';
+//IMPORTA TUDO O QUE É SOLICITADO DE TS NO CONTROLLER. O RESPONSAVEL PELO CARREGAMENTO(LOADER) É O SYSTEM.JS QUE ESTÁ NO INDEX.HTML
+
+
+export class NegociacaoController {
     
     //declarando sem JQuery
 
@@ -12,8 +19,8 @@ class NegociacaoController {
     private _inputQuantidade: JQuery;
     private _inputValor: JQuery;
     private _negociacoes = new Negociacoes();
-    private _negociacoesView = new Views.NegociacoesView('#negociacoesView');
-    private _mensagensView = new Views.MensagensView('#mensagemView')
+    private _negociacoesView = new NegociacoesView('#negociacoesView');
+    private _mensagensView = new MensagensView('#mensagemView')
 
     constructor() {
 

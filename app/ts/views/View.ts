@@ -1,7 +1,7 @@
-namespace Views{ //namespace uma forma de acessar todas as VIEWS através de Views.
+//namespace Views{ //namespace uma forma de acessar todas as VIEWS através de Views.
                  //precisa dar export nas classes para elas serem acessadas através do namespace Views
-                 
-    export abstract class View <T> {//abstract não deixa instanciar a classe
+          
+   export abstract class View <T> {//abstract não deixa instanciar a classe
         //<T> indica que recebe algum valor que será passado nas classes filhas "Negociacoes"(NegociacoesView) e "string"(MensagensView)
         protected _elemento: JQuery;
     
@@ -18,5 +18,5 @@ namespace Views{ //namespace uma forma de acessar todas as VIEWS através de Vie
         abstract template(modelo: T):string; //código apenas compila quando implementa template nas classes filhas
     
     }
-}
+
 

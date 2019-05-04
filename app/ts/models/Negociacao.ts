@@ -1,4 +1,4 @@
-class Negociacao {
+export class Negociacao {
 
     constructor(private _data: Date, private _quantidade: number, private _valor: number){}
                 //declara como privada e define o tipo da variavel: Date, number, string

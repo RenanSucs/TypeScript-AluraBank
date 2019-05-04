@@ -1,6 +1,6 @@
-namespace Views{
-
-    export class NegociacoesView extends Views.View<Negociacoes> {//template string para popular com negociacoes
+    import { View } from './View' //importa módulo para evitar dependencias no index.html de arquivos js
+    import { Negociacoes } from '../models/Negociacoes';
+    export class NegociacoesView extends View<Negociacoes> {//template string para popular com negociacoes
 
         template(modelo: Negociacoes): string {
     
@@ -34,5 +34,5 @@ namespace Views{
             `;
         }
     }
-}
+
 
