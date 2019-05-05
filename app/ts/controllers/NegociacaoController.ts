@@ -1,7 +1,5 @@
-import { NegociacoesView } from '../views/NegociacoesView';
-import { MensagensView } from '../views/MensagensView';
-import { Negociacoes } from '../models/Negociacoes';
-import { Negociacao } from '../models/Negociacao';
+import { NegociacoesView, MensagensView  } from '../views/index';
+import { Negociacoes, Negociacao } from '../models/index';
 //IMPORTA TUDO O QUE É SOLICITADO DE TS NO CONTROLLER. O RESPONSAVEL PELO CARREGAMENTO(LOADER) É O SYSTEM.JS QUE ESTÁ NO INDEX.HTML
 
 
