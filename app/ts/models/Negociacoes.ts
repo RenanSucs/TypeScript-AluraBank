@@ -10,6 +10,6 @@ export class Negociacoes{
             //: Array<Negociacao> é a mesma coisa que = Negociacao []
     paraArray(): Negociacao[] {//indico que o método adiciona vai retornar um array de negociacao, consigo apenas retornar este array neste método
 
-        return [].concat(this._negociacoes);
+        return ([] as Negociacao[]).concat(this._negociacoes);
     }
 }
