@@ -1,5 +1,6 @@
 import { NegociacoesView, MensagensView  } from '../views/index';
 import { Negociacoes, Negociacao } from '../models/index';
+import {logarTempoDeExecucao } from '../helpers/decorators/index'
 //IMPORTA TUDO O QUE É SOLICITADO DE TS NO CONTROLLER. O RESPONSAVEL PELO CARREGAMENTO(LOADER) É O SYSTEM.JS QUE ESTÁ NO INDEX.HTML
 
 
@@ -31,10 +32,10 @@ export class NegociacaoController {
         this._inputValor = $('#valor');
         this._negociacoesView.update(this._negociacoes);
     }
-
+    @logarTempoDeExecucao()//decorator
     adiciona(event: Event) {
 
-        const t1 = performance.now();
+        const t1 = performance.now();//teste de performance, vai ser substituido por um decorator
 
         event.preventDefault();
 
@@ -55,7 +56,7 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);  
         this._mensagensView.update('Negociação adicionada com sucesso');
 
-        const t2 = performance.now();
+        const t2 = performance.now(); //performance
         console.log(`o tempo do metodo adiciona foi de ${t2 - t1}`)
     }
 }
