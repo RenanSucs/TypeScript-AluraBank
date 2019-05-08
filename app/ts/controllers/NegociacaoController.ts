@@ -1,6 +1,7 @@
 import { NegociacoesView, MensagensView  } from '../views/index';
 import { Negociacoes, Negociacao } from '../models/index';
 import {logarTempoDeExecucao } from '../helpers/decorators/index'
+import { domInject } from '../helpers/decorators/domInject'
 //IMPORTA TUDO O QUE É SOLICITADO DE TS NO CONTROLLER. O RESPONSAVEL PELO CARREGAMENTO(LOADER) É O SYSTEM.JS QUE ESTÁ NO INDEX.HTML
 
 
@@ -14,9 +15,15 @@ export class NegociacaoController {
 
 
     //declarando com JQuery
-    private _inputData: JQuery; 
+    @domInject('#data')
+    private _inputData: JQuery;
+    
+    @domInject('#quantidade')
     private _inputQuantidade: JQuery;
+
+    @domInject('#valor')
     private _inputValor: JQuery;
+
     private _negociacoes = new Negociacoes();
     private _negociacoesView = new NegociacoesView('#negociacoesView', true);
     private _mensagensView = new MensagensView('#mensagemView')
@@ -27,10 +34,11 @@ export class NegociacaoController {
         //this._inputQuantidade = <HTMLInputElement>document.querySelector('#quantidade');
         //this._inputValor = <HTMLInputElement>document.querySelector('#valor');
         
-        this._inputData = $('#data');
-        this._inputQuantidade = $('#quantidade');
-        this._inputValor = $('#valor');
-        this._negociacoesView.update(this._negociacoes);
+        //paramos de declarar no construtor para nao consumir memória e ser apenas chamado quando necessário com o dominject
+        //this._inputData = $('#data');
+        //this._inputQuantidade = $('#quantidade');
+        //this._inputValor = $('#valor');
+        //this._negociacoesView.update(this._negociacoes);
     }
     @logarTempoDeExecucao()//decorator
     adiciona(event: Event) {
