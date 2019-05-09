@@ -1,5 +1,5 @@
 import { NegociacoesView, MensagensView  } from '../views/index';
-import { Negociacoes, Negociacao } from '../models/index';
+import { Negociacoes, Negociacao, NegociacaoParcial } from '../models/index';
 import {logarTempoDeExecucao } from '../helpers/decorators/index'
 //IMPORTA TUDO O QUE É SOLICITADO DE TS NO CONTROLLER. O RESPONSAVEL PELO CARREGAMENTO(LOADER) É O SYSTEM.JS QUE ESTÁ NO INDEX.HTML
 
@@ -59,6 +59,27 @@ export class NegociacaoController {
         const t2 = performance.now(); //performance
         console.log(`o tempo do metodo adiciona foi de ${t2 - t1}`)
     }
+
+    importaDados(){//fetch API para retornar dados da API
+
+        function isOk(res: Response){//tipo resposta para o typescript ajudar no autocomplete "res.statusText"
+
+            if(res.ok){
+                return res;
+            }else{
+                throw new Error(res.statusText);
+            }
+        }
+        fetch('http://localhost:8080/dados')
+            .then(res => isOk(res))
+            .then(res => res.json())
+            .then((dados:NegociacaoParcial[]) => {
+                dados.map(dado => new Negociacao(new Date(), dado.vezes, dado.montante))
+                .forEach(negociacao => this._negociacoes.adiciona(negociacao))
+                this._negociacoesView.update(this._negociacoes);
+            })
+            .catch(err => console.log(err.message));
+    }
 }
 
 enum DiasDaSemana{
@@ -70,3 +91,4 @@ enum DiasDaSemana{
     Sexta,
     Sabado
 }
+
