@@ -1,7 +1,7 @@
 import { NegociacoesView, MensagensView  } from '../views/index';
 import { Negociacoes, Negociacao, NegociacaoParcial } from '../models/index';
 import {logarTempoDeExecucao } from '../helpers/decorators/index'
-import { domInject } from '../helpers/decorators/domInject'
+import { domInject, throttle } from '../helpers/decorators/index'
 //IMPORTA TUDO O QUE É SOLICITADO DE TS NO CONTROLLER. O RESPONSAVEL PELO CARREGAMENTO(LOADER) É O SYSTEM.JS QUE ESTÁ NO INDEX.HTML
 
 
@@ -40,12 +40,12 @@ export class NegociacaoController {
         //this._inputValor = $('#valor');
         //this._negociacoesView.update(this._negociacoes);
     }
+
+    @throttle()
     @logarTempoDeExecucao()//decorator
-    adiciona(event: Event) {
+    adiciona() {
 
         const t1 = performance.now();//teste de performance, vai ser substituido por um decorator
-
-        event.preventDefault();
 
         let data = new Date(this._inputData.val().replace(/-/g, ','));
 
@@ -67,7 +67,8 @@ export class NegociacaoController {
         const t2 = performance.now(); //performance
         console.log(`o tempo do metodo adiciona foi de ${t2 - t1}`)
     }
-
+    
+    @throttle()//decorator responsavel por atrasar a requisição do ajax em meio segundo para evitar multiplos cliques no botao importar
     importaDados(){//fetch API para retornar dados da API
 
         function isOk(res: Response){//tipo resposta para o typescript ajudar no autocomplete "res.statusText"
