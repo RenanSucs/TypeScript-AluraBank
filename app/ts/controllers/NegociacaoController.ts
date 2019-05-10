@@ -1,7 +1,8 @@
 import { NegociacoesView, MensagensView  } from '../views/index';
 import { Negociacoes, Negociacao, NegociacaoParcial } from '../models/index';
-import {logarTempoDeExecucao } from '../helpers/decorators/index'
-import { domInject, throttle } from '../helpers/decorators/index'
+import {logarTempoDeExecucao } from '../helpers/decorators/index';
+import { domInject, throttle } from '../helpers/decorators/index';
+import {NegociacaoService } from '../Servicos/index';
 //IMPORTA TUDO O QUE É SOLICITADO DE TS NO CONTROLLER. O RESPONSAVEL PELO CARREGAMENTO(LOADER) É O SYSTEM.JS QUE ESTÁ NO INDEX.HTML
 
 
@@ -26,7 +27,9 @@ export class NegociacaoController {
 
     private _negociacoes = new Negociacoes();
     private _negociacoesView = new NegociacoesView('#negociacoesView', true);
-    private _mensagensView = new MensagensView('#mensagemView')
+    private _mensagensView = new MensagensView('#mensagemView');
+
+    private _Service = new NegociacaoService();
 
     constructor() {
 
@@ -79,15 +82,15 @@ export class NegociacaoController {
                 throw new Error(res.statusText);
             }
         }
-        fetch('http://localhost:8080/dados')
-            .then(res => isOk(res))
-            .then(res => res.json())
-            .then((dados:NegociacaoParcial[]) => {
-                dados.map(dado => new Negociacao(new Date(), dado.vezes, dado.montante))
-                .forEach(negociacao => this._negociacoes.adiciona(negociacao))
-                this._negociacoesView.update(this._negociacoes);
-            })
-            .catch(err => console.log(err.message));
+       
+        this._Service
+            .obterNegociacoes(isOk)
+            .then(negociacoes => {
+                negociacoes.forEach(negociacao => 
+                    this._negociacoes.adiciona(negociacao))
+                
+                    this._negociacoesView.update(this._negociacoes);
+                });
     }
 }
 
